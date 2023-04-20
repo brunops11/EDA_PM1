@@ -40,7 +40,14 @@ void Baja2(char *p,vhlo v,int *exito,int cod){
     if(exitoL){
         vL=lsd[pos];
         if(cod==1){
-            MostrarVhlo(vL);
+            printf("Patente: %s\n\n",vL.patente);
+            printf("Marca y modelo: %s\n\n",vL.marcamod);
+            printf("A%co de fabricacion: %d\n\n",164,vL.anio);
+            printf("Nombre: %s\n\n",vL.nom);
+            printf("Telefono: %s\n\n",vL.tel);
+            printf("Servicio efectuado: %s\n\n",vL.serv);
+            printf("Importe: %.2f\n\n",vL.importe);
+            printf("Fecha: %s\n\n",vL.fecha);
             do{
                 printf("Esta seguro que desea eliminar el vehiculo? S/N\n");
                 fflush(stdin);
@@ -53,10 +60,12 @@ void Baja2(char *p,vhlo v,int *exito,int cod){
                 vrf='N';
         }
         if(vrf=='S'||vrf=='s'){
+            if(pos!=cantlsd-1){
                 for(i=pos;i<cantlsd-1;i++){
                     lsd[i]=lsd[i+1];
                     dlsdB=dlsdB+1.5;
                 }
+            }
                 cantlsd--;
                 *exito = 1;
             }else
