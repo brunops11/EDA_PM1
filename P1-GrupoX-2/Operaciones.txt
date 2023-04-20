@@ -1,0 +1,49 @@
+1
+AA951XU
+Mitsubishi Carisma
+2020
+Marcelo Sanchez Sorondo
+261-4967890
+Cambio de Fluidos
+25000.00
+2020-02-13
+1
+AA067XO
+Mitsubishi Chariot
+2020
+Anibal Sanchez Reulet
+262-5867891
+Cambio de Fluidos
+13750.50
+2020-03-14
+1
+AA124VN
+Mitsubishi Colt
+2020
+Beatriz Sarlo
+263-6767892
+Cambio de Fluidos
+55000.00
+2020-01-15
+1
+AA105NG
+Mitsubishi Concept-RA
+2020
+Carlos Savransky
+264-4667893
+Cambio de Fluidos
+30000.15
+2020-03-16
+1
+AA909EG
+Mitsubishi Lancer
+2020
+Raul Scalabrini Ortiz
+265-5567894
+Cambio de Fluidos
+10550.00
+2020-02-17
+3
+AA105NG
+3
+AA951XU

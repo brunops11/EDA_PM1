@@ -1,0 +1,67 @@
+# depslib dependency file v1.0
+1680492495 source:z:\code\p1-grupox\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"vehiculo.h"
+	"lvo.h"
+	"lso.h"
+	"lsd.h"
+	<windows.h>
+
+1680492117 z:\code\p1-grupox\vehiculo.h
+	<string.h>
+
+1680533028 z:\code\p1-grupox\lvo.h
+
+1680490957 z:\code\p1-grupox\lso.h
+	<string.h>
+
+1680492148 z:\code\p1-grupox\lsd.h
+	<string.h>
+
+1680478094 source:c:\users\usuario\desktop\p1-grupox\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"vehiculo.h"
+	"lvo.h"
+	"lso.h"
+	"lsd.h"
+	<windows.h>
+
+1680477716 c:\users\usuario\desktop\p1-grupox\vehiculo.h
+	<string.h>
+
+1680518628 c:\users\usuario\desktop\p1-grupox\lvo.h
+
+1680476556 c:\users\usuario\desktop\p1-grupox\lso.h
+	<string.h>
+
+1680477748 c:\users\usuario\desktop\p1-grupox\lsd.h
+	<string.h>
+
+1681866489 source:z:\code\p1-grupox-2\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"vehiculo.h"
+	"lvo.h"
+	"lso.h"
+	"lsd.h"
+	"lsobbb.h"
+	<windows.h>
+
+1680463316 z:\code\p1-grupox-2\vehiculo.h
+	<string.h>
+
+1681747311 z:\code\p1-grupox-2\lvo.h
+
+1681102253 z:\code\p1-grupox-2\lso.h
+	<string.h>
+
+1681102289 z:\code\p1-grupox-2\lsd.h
+	<string.h>
+
+1681868832 z:\code\p1-grupox-2\lsobbb.h
+
