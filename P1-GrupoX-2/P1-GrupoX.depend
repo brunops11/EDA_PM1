@@ -41,7 +41,7 @@
 1680477748 c:\users\usuario\desktop\p1-grupox\lsd.h
 	<string.h>
 
-1681866489 source:z:\code\p1-grupox-2\main.c
+1681961283 source:z:\code\p1-grupox-2\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -50,6 +50,7 @@
 	"lso.h"
 	"lsd.h"
 	"lsobbb.h"
+	"controlEst.h"
 	<windows.h>
 
 1680463316 z:\code\p1-grupox-2\vehiculo.h
@@ -60,8 +61,15 @@
 1681102253 z:\code\p1-grupox-2\lso.h
 	<string.h>
 
-1681102289 z:\code\p1-grupox-2\lsd.h
+1681959338 z:\code\p1-grupox-2\lsd.h
 	<string.h>
 
 1681868832 z:\code\p1-grupox-2\lsobbb.h
+
+1681961265 z:\code\p1-grupox-2\controlest.h
+	"lso.h"
+	"lsd.h"
+	"lsobbb.h"
+	"lvo.h"
+	"vehiculo.h"
 

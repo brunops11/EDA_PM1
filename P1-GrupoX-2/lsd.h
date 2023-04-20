@@ -3,7 +3,7 @@
 #include <string.h>
 
 vhlo lsd[m];
-int cantlsd = 0,cclsd=0,dlsdB=0;
+int cantlsd = 0,cclsd=0,dlsdA = 0,dlsdB=0;
 
 void Localizar2(char *p,int *exito,int *pos){
     int i=0;
@@ -43,7 +43,7 @@ void Baja2(char *p,vhlo v,int *exito,int cod){
             printf("Patente: %s\n\n",vL.patente);
             printf("Marca y modelo: %s\n\n",vL.marcamod);
             printf("A%co de fabricacion: %d\n\n",164,vL.anio);
-            printf("Nombre: %s\n\n",vL.nom);
+            printf("Nombre del due%co: %s\n\n",164,vL.nom);
             printf("Telefono: %s\n\n",vL.tel);
             printf("Servicio efectuado: %s\n\n",vL.serv);
             printf("Importe: %.2f\n\n",vL.importe);
@@ -60,7 +60,7 @@ void Baja2(char *p,vhlo v,int *exito,int cod){
                 vrf='N';
         }
         if(vrf=='S'||vrf=='s'){
-            if(pos!=cantlsd-1){
+            if(cantlsd-1!=pos){
                 for(i=pos;i<cantlsd-1;i++){
                     lsd[i]=lsd[i+1];
                     dlsdB=dlsdB+1.5;

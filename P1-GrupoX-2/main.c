@@ -6,6 +6,7 @@
 #include "lso.h"
 #include "lsd.h"
 #include "lsobbb.h"
+#include "controlEst.h"
 
 #ifdef _WIN32
     #include<windows.h>
@@ -20,11 +21,11 @@ void limpiar(){
 }
 
 void MostrarLVO();
-void MostrarLSO(vhlo[]);
-void MostrarLSD(vhlo[]);
-void MostrarLSOBB(vhlo[]);
+void MostrarLSO();
+void MostrarLSD();
+void MostrarLSOBB();
 void CargarVehiculo(vhlo*);
-int Lectura_operaciones();
+
 
 int main()
 {
@@ -55,8 +56,7 @@ int main()
                                             else
                                                 printf("El vehiculo ya se encuentra en la lista.\n");
                                         }
-                                        fflush(stdin);
-                                        getchar();
+                                        system("pause");
                                         limpiar();
                                 break;
                                 case 2: if(cantlvo==0)
@@ -75,11 +75,26 @@ int main()
                                                     printf("No fue posible eliminar el vehiculo.\n");
                                             }
                                         }
-                                        fflush(stdin);
-                                        getchar();
+                                        system("pause");
                                         limpiar();
                                 break;
-                                case 3: //determinar
+                                case 3: if(cantlvo==0)
+                                            printf("Lista vacia.\n");
+                                        else{
+                                            printf("Ingrese patente del vehiculo a consultar por servicio.\n");
+                                            fflush(stdin);
+                                            scanf("%7[^\n]",pCE);
+                                            Evocar1(pCE,&nuevo,&exito);
+                                            if(exito){
+                                                if(strlen(nuevo.serv)==0)
+                                                    printf("NO se le ha realizado servicio mecanico al vehiculo con patente %s.\n",pCE);
+                                                else
+                                                    printf("SI se le ha realizado servicio mecanico al vehiculo con patente %s.\n",pCE);
+                                            }else
+                                                printf("No fue posible consultar por el vehiculo.\n");
+                                        }
+                                        system("pause");
+                                        limpiar();
                                 break;
                                 case 4: if(cantlvo==0)
                                             printf("Lista vacia.\n");
@@ -92,18 +107,15 @@ int main()
                                                 printf("Resultado de la consulta:\n");
                                                 MostrarVhlo(nuevo);
                                             }else
-                                                printf("No fue posible consultar ese vehiculo.\n");
+                                                printf("No fue posible consultar por el vehiculo.\n");
                                         }
                                         fflush(stdin);
-                                        getchar();
+                                        system("pause");
                                         limpiar();
                                 break;
                                 case 5: if(cantlvo==0){
                                             printf("Lista vacia. Ingrese vehiculos.\n");
-                                            fflush(stdin);
-                                            getchar();
-                                            limpiar();
-
+                                            system("pause");
                                         }else
                                             MostrarLVO();
                                         limpiar();
@@ -128,8 +140,7 @@ int main()
                                             else
                                                 printf("El vehiculo ya se encuentra en la lista.\n");
                                         }
-                                        fflush(stdin);
-                                        getchar();
+                                        system("pause");
                                         limpiar();
                                 break;
                                 case 2: if(cantlsd==0)
@@ -148,11 +159,26 @@ int main()
                                                     printf("No fue posible eliminar el vehiculo.\n");
                                             }
                                         }
-                                        fflush(stdin);
-                                        getchar();
+                                        system("pause");
                                         limpiar();
                                 break;
-                                case 3: //determinar
+                                case 3: if(cantlsd==0)
+                                            printf("Lista vacia.\n");
+                                        else{
+                                            printf("Ingrese patente del vehiculo a consultar por servicio.\n");
+                                            fflush(stdin);
+                                            scanf("%7[^\n]",pCE);
+                                            Evocar2(pCE,&nuevo,&exito);
+                                            if(exito){
+                                                if(strlen(nuevo.serv)==0)
+                                                    printf("NO se le ha realizado servicio mecanico al vehiculo con patente %s.\n",pCE);
+                                                else
+                                                    printf("SI se le ha realizado servicio mecanico al vehiculo con patente %s.\n",pCE);
+                                            }else
+                                                printf("No fue posible consultar por el vehiculo.\n");
+                                        }
+                                        system("pause");
+                                        limpiar();
                                 break;
                                 case 4: if(cantlsd==0)
                                             printf("Lista vacia.\n");
@@ -166,16 +192,12 @@ int main()
                                             }else
                                                 printf("No fue posible consultar ese vehiculo.\n");
                                         }
-                                        fflush(stdin);
-                                        getchar();
+                                        system("pause");
                                         limpiar();
                                 break;
                                 case 5: if(cantlsd==0){
                                             printf("Lista vacia. Ingrese vehiculos.\n");
-                                            fflush(stdin);
-                                            getchar();
-                                            limpiar();
-
+                                            system("pause");
                                         }else
                                             MostrarLSD(l);
                                         limpiar();
@@ -200,8 +222,7 @@ int main()
                                         else
                                             printf("El vehiculo ya se encuentra en la lista.\n");
                                         }
-                                        fflush(stdin);
-                                        getchar();
+                                        system("pause");
                                         limpiar();
                                 break;
                                 case 2:if(cantlso==0)
@@ -220,11 +241,26 @@ int main()
                                                     printf("No fue posible eliminar el vehiculo.\n");
                                             }
                                         }
-                                        fflush(stdin);
-                                        getchar();
+                                        system("pause");
                                         limpiar();
                                 break;
-                                case 3://determinar
+                                case 3:if(cantlso==0)
+                                            printf("Lista vacia.\n");
+                                        else{
+                                            printf("Ingrese patente del vehiculo a consultar por servicio.\n");
+                                            fflush(stdin);
+                                            scanf("%7[^\n]",pCE);
+                                            Evocar(pCE,&nuevo,&exito);
+                                            if(exito){
+                                                if(strlen(nuevo.serv)==0)
+                                                    printf("NO se le ha realizado servicio mecanico al vehiculo con patente %s.\n",pCE);
+                                                else
+                                                    printf("SI se le ha realizado servicio mecanico al vehiculo con patente %s.\n",pCE);
+                                            }else
+                                                printf("No fue posible consultar por el vehiculo.\n");
+                                        }
+                                        system("pause");
+                                        limpiar();
                                 break;
                                 case 4:if(cantlso==0)
                                             printf("Lista vacia.\n");
@@ -234,25 +270,23 @@ int main()
                                             scanf("%7[^\n]",pCE);
                                             Evocar(pCE,&nuevo,&exito);
                                             if(exito){
-                                                printf("Resultado de la consulta:\n");
+                                                printf("\nResultado de la consulta:\n\n");
                                                 MostrarVhlo(nuevo);
                                             }else
                                                 printf("No fue posible consultar ese vehiculo.\n");
                                         }
-                                        fflush(stdin);
-                                        getchar();
+                                        system("pause");
                                         limpiar();
                                 break;
                                 case 5: if(cantlso==0){
                                             printf("Lista vacia. Ingrese vehiculos.\n");
-                                            getchar();
+                                            system("pause");
                                         }else
                                             MostrarLSO(l);
                                         limpiar();
                                 break;
                                 case 6: printf("Saliendo de la estructura...\n");
-                                        fflush(stdin);
-                                        getchar();
+                                        system("pause");
                                         limpiar();
                                 break;
                             }
@@ -272,8 +306,7 @@ int main()
                                         else
                                             printf("El vehiculo ya se encuentra en la lista.\n");
                                         }
-                                        fflush(stdin);
-                                        getchar();
+                                        system("pause");
                                         limpiar();
                                 break;
                                 case 2:if(cantlsobb==0)
@@ -292,11 +325,26 @@ int main()
                                                     printf("No fue posible eliminar el vehiculo.\n");
                                             }
                                         }
-                                        fflush(stdin);
-                                        getchar();
+                                        system("pause");
                                         limpiar();
                                 break;
-                                case 3://determinar
+                                case 3:if(cantlsobb==0)
+                                            printf("Lista vacia.\n");
+                                        else{
+                                            printf("Ingrese patente del vehiculo a consultar por servicio.\n");
+                                            fflush(stdin);
+                                            scanf("%7[^\n]",pCE);
+                                            Evocar3(pCE,&nuevo,&exito);
+                                            if(exito){
+                                                if(strlen(nuevo.serv)==0)
+                                                    printf("NO se le ha realizado servicio mecanico al vehiculo con patente %s.\n",pCE);
+                                                else
+                                                    printf("SI se le ha realizado servicio mecanico al vehiculo con patente %s.\n",pCE);
+                                            }else
+                                                printf("No fue posible consultar por el vehiculo.\n");
+                                        }
+                                        system("pause");
+                                        limpiar();
                                 break;
                                 case 4:if(cantlsobb==0)
                                             printf("Lista vacia.\n");
@@ -311,20 +359,18 @@ int main()
                                             }else
                                                 printf("No fue posible consultar ese vehiculo.\n");
                                         }
-                                        fflush(stdin);
-                                        getchar();
+                                        system("pause");
                                         limpiar();
                                 break;
                                 case 5: if(cantlsobb==0){
                                             printf("Lista vacia. Ingrese vehiculos.\n");
-                                            getchar();
+                                            system("pause");
                                         }else
                                             MostrarLSOBB(lsobb);
                                         limpiar();
                                 break;
                                 case 6: printf("Saliendo de la estructura...\n");
-                                        fflush(stdin);
-                                        getchar();
+                                        system("pause");
                                         limpiar();
                                 break;
                             }
@@ -339,6 +385,7 @@ int main()
             res = Lectura_operaciones();
             if(res){
                 printf("Lectura exitosa.\n");
+                Comparacion();
             }else
                 printf("Error: Carga de datos no exitosa.\n");
 
@@ -356,45 +403,73 @@ void MostrarLVO(){
     for(n=lvo.ac;n!=NULL;n=(*n).sig){
         aux = (*n).dato;
         printf("\n----------[%d]----------\n",i);
-        MostrarVhlo(aux);
+        printf("Patente: %s\n\n",aux.patente);
+        printf("Marca y modelo: %s\n\n",aux.marcamod);
+        printf("A%co de fabricacion: %d\n\n",165,aux.anio);
+        printf("Nombre del due%co: %s\n\n",165,aux.nom);
+        printf("Telefono: %s\n\n",aux.tel);
+        printf("Servicio efectuado: %s\n\n",aux.serv);
+        printf("Importe: %.2f\n\n",aux.importe);
+        printf("Fecha: %s\n\n",aux.fecha);
         i++;
     }
-    getchar();
+    system("pause");
 }
-void MostrarLSO (vhlo a[]){
+void MostrarLSO (){
     int i;
     vhlo aux;
     printf("Mostrando\n");
     for(i=0;i<cantlso;i++){
         aux=l[i];
         printf("\n----------[%d]----------\n",i+1);
-        MostrarVhlo(aux);
+         printf("Patente: %s\n\n",aux.patente);
+        printf("Marca y modelo: %s\n\n",aux.marcamod);
+        printf("A%co de fabricacion: %d\n\n",165,aux.anio);
+        printf("Nombre del due%co: %s\n\n",165,aux.nom);
+        printf("Telefono: %s\n\n",aux.tel);
+        printf("Servicio efectuado: %s\n\n",aux.serv);
+        printf("Importe: %.2f\n\n",aux.importe);
+        printf("Fecha: %s\n\n",aux.fecha);
     }
-    getchar();
+    system("pause");
 }
 
-void MostrarLSD (vhlo a[]){
+void MostrarLSD (){
     int i;
     vhlo aux;
     printf("Mostrando\n");
     for(i=0;i<cantlsd;i++){
         aux=lsd[i];
         printf("\n----------[%d]----------\n",i+1);
-        MostrarVhlo(aux);
+        printf("Patente: %s\n\n",aux.patente);
+        printf("Marca y modelo: %s\n\n",aux.marcamod);
+        printf("A%co de fabricacion: %d\n\n",165,aux.anio);
+        printf("Nombre del due%co: %s\n\n",165,aux.nom);
+        printf("Telefono: %s\n\n",aux.tel);
+        printf("Servicio efectuado: %s\n\n",aux.serv);
+        printf("Importe: %.2f\n\n",aux.importe);
+        printf("Fecha: %s\n\n",aux.fecha);
     }
-    getchar();
+    system("pause");
 }
 
-void MostrarLSOBB(vhlo a[]){
+void MostrarLSOBB(){
     int i;
     vhlo aux;
     printf("Mostrando...\n");
     for(i=0;i<cantlsobb;i++){
         aux = lsobb[i];
         printf("\n----------[%d]----------\n",i+1);
-        MostrarVhlo(aux);
+        printf("Patente: %s\n\n",aux.patente);
+        printf("Marca y modelo: %s\n\n",aux.marcamod);
+        printf("A%co de fabricacion: %d\n\n",165,aux.anio);
+        printf("Nombre del due%co: %s\n\n",165,aux.nom);
+        printf("Telefono: %s\n\n",aux.tel);
+        printf("Servicio efectuado: %s\n\n",aux.serv);
+        printf("Importe: %.2f\n\n",aux.importe);
+        printf("Fecha: %s\n\n",aux.fecha);
     }
-    getchar();
+    system("pause");
 }
 
 void CargarVehiculo(vhlo *v){
@@ -429,56 +504,3 @@ void CargarVehiculo(vhlo *v){
     estvhlo(nPatente,nMM,nanio,nNombre,nTel,nServ,nImporte,nFecha,v);
 }
 
-int Lectura_operaciones(){
-    FILE *fp;
-    int codOp,exitoL;
-    if((fp=fopen("Operaciones.txt","r"))==NULL)
-        return 0;
-    else{
-        while(!(feof(fp))){
-            vhlo aux;
-            fscanf(fp,"%d",&codOp);
-            fgetc(fp);
-            if(codOp==1||codOp==2){
-                fgets(aux.patente,8,fp);
-                fgetc(fp);
-                fgets(aux.marcamod,60,fp);
-                fscanf(fp,"%d",&aux.anio);
-                fgetc(fp);
-                fgets(aux.nom,50,fp);
-
-                fgets(aux.tel,15,fp);
-
-                fgets(aux.serv,70,fp);
-                fscanf(fp,"%f",&aux.importe);
-                fgetc(fp);
-                fgets(aux.fecha,11,fp);
-                fgetc(fp);
-                if(codOp==1){
-                    Alta(aux,&exitoL);
-                    Alta1(aux,&exitoL);
-                    Alta2(aux,&exitoL);
-                    Alta3(aux,&exitoL);
-                }else{
-                    Baja(aux.patente,aux,&exitoL,2);
-                    Baja1(aux.patente,aux,&exitoL,2);
-                    Baja2(aux.patente,aux,&exitoL,2);
-                    Baja3(aux.patente,aux,&exitoL,2);
-                }
-            }else{
-                if(codOp==3){
-                    fgets(aux.patente,8,fp);
-                    fgetc(fp);
-                    vhlo aux1;
-                    Evocar(aux.patente,&aux1,&exitoL);
-                    Evocar1(aux.patente,&aux1,&exitoL);
-                    Evocar2(aux.patente,&aux1,&exitoL);
-                    Evocar3(aux.patente,&aux1,&exitoL);
-                }else
-                    printf("Error: Codigo de operador desconocido.\n");
-            }
-        }
-        return 1;
-    }
-    fclose(fp);
-}
