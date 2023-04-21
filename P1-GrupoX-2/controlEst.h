@@ -33,6 +33,27 @@ int Lectura_operaciones(){
     if((fp=fopen("Operaciones.txt","r"))==NULL)
         return 0;
     else{
+        nodoV *aux = lvo.ac;
+        while(lvo.ac!=NULL){
+            free(aux);
+            aux = lvo.ac;
+        }
+        cantlvo = 0;
+        cantlso = 0;
+        cantlsd = 0;
+        cantlsobb = 0;
+        cclvo = 0;
+        cclso = 0;
+        cclsd = 0;
+        cclsobb = 0;
+        dlsoA = 0;
+        dlsoB = 0;
+        dlsdA = 0;
+        dlsdB = 0;
+        dlsobbA = 0;
+        dlsobbB = 0;
+        mplvoA = 0;
+        mplvoB = 0;
         while(!(feof(fp))){
             vhlo aux;
             fscanf(fp,"%d",&codOp);

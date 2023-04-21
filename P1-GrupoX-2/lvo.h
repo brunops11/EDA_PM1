@@ -16,20 +16,20 @@ nodoV *antLVO;
 int cantlvo = 0,cclvo=0,mplvoA=0,mplvoB=0;
 
 void Localizar1(char p[],int *exito,nodoV **pos){
-    *pos = NULL;
+    *pos = lvo.ac;
     if(lvo.ac==NULL){
         cclvo++;
         *exito = 0;
     }
     lvo.ap = lvo.ac;
     antLVO = lvo.ac;
-    while((lvo.ap!=NULL) && (strcmpi((*lvo.ap).dato.patente,p) > 0)){
+    while((lvo.ap!=NULL) && (strcmpi((*lvo.ap).dato.patente,p) < 0)){
         antLVO = lvo.ap;
         lvo.ap = (*lvo.ap).sig;
         *pos = lvo.ap;
         cclvo++;
     }
-    if(lvo.ap==NULL){
+    if(lvo.ap==NULL && lvo.ac!=NULL){
         cclvo++;
         *exito = 0;
     }
@@ -52,16 +52,27 @@ void Alta1(vhlo v,int *exito){
     nodoV *pos = NULL;
     Localizar1(v.patente,&exitoL,&pos);
     if(!exitoL){
-        nodoV *n=(nodoV*)malloc(sizeof(nodoV));
-        if(n == NULL)
+        nodoV *n = (nodoV*)malloc(sizeof(nodoV));
+        if(n==NULL)
             *exito = -1;
         (*n).dato = v;
-        if(pos==NULL){
+        (*n).sig = NULL;
+        if(lvo.ac==NULL){
+            lvo.ac = n;
+            lvo.ap = n;
+            mplvoA = mplvoA + 2;
+        }else if(pos==lvo.ac){
             (*n).sig = lvo.ac;
             lvo.ac = n;
+            lvo.ap = n;
+            mplvoA = mplvoA + 3;
+        }else if(antLVO!=NULL && pos!=NULL){
+            (*n).sig = lvo.ap;
+            (*antLVO).sig = n;
+            mplvoA = mplvoA + 2;
         }else{
-            (*n).sig = (*pos).sig;
-            (*pos).sig = n;
+            (*antLVO).sig = n;
+            mplvoA = mplvoA + 1;
         }
         *exito = 1;
         cantlvo++;
@@ -79,7 +90,14 @@ void Baja1(char *p,vhlo v,int *exito,int cod){
         lvo.ap = pos;
         vL=(*lvo.ap).dato;
         if(cod==1){
-            MostrarVhlo(vL);
+            printf("Patente: %s\n\n",vL.patente);
+            printf("Marca y modelo: %s\n\n",vL.marcamod);
+            printf("A%co de fabricacion: %d\n\n",164,vL.anio);
+            printf("Nombre del due%co: %s\n\n",164,vL.nom);
+            printf("Telefono: %s\n\n",vL.tel);
+            printf("Servicio efectuado: %s\n\n",vL.serv);
+            printf("Importe: %.2f\n\n",vL.importe);
+            printf("Fecha: %s\n\n",vL.fecha);
             do{
                 printf("Esta seguro que desea eliminar el vehiculo? S/N\n");
                 fflush(stdin);

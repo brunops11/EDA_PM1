@@ -3,7 +3,8 @@
 #include <string.h>
 
 vhlo lsd[m];
-int cantlsd = 0,cclsd=0,dlsdA = 0,dlsdB=0;
+int cantlsd = 0,cclsd=0;
+float dlsdA = 0,dlsdB=0;
 
 void Localizar2(char *p,int *exito,int *pos){
     int i=0;

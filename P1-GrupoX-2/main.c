@@ -1,3 +1,6 @@
+//
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -104,8 +107,15 @@ int main()
                                             scanf("%7[^\n]",pCE);
                                             Evocar1(pCE,&nuevo,&exito);
                                             if(exito){
-                                                printf("Resultado de la consulta:\n");
-                                                MostrarVhlo(nuevo);
+                                                printf("\nResultado de la consulta:\n\n");
+                                                printf("Patente: %s\n\n",nuevo.patente);
+                                                printf("Marca y modelo: %s\n\n",nuevo.marcamod);
+                                                printf("A%co de fabricacion: %d\n\n",164,nuevo.anio);
+                                                printf("Nombre del due%co: %s\n\n",164,nuevo.nom);
+                                                printf("Telefono: %s\n\n",nuevo.tel);
+                                                printf("Servicio efectuado: %s\n\n",nuevo.serv);
+                                                printf("Importe: %.2f\n\n",nuevo.importe);
+                                                printf("Fecha: %s\n\n",nuevo.fecha);
                                             }else
                                                 printf("No fue posible consultar por el vehiculo.\n");
                                         }
@@ -187,8 +197,15 @@ int main()
                                             scanf("%7[^\n]",pCE);
                                             Evocar2(pCE,&nuevo,&exito);
                                             if(exito){
-                                                printf("Resultado de la consulta:\n");
-                                                MostrarVhlo(nuevo);
+                                                printf("\nResultado de la consulta:\n\n");
+                                                printf("Patente: %s\n\n",nuevo.patente);
+                                                printf("Marca y modelo: %s\n\n",nuevo.marcamod);
+                                                printf("A%co de fabricacion: %d\n\n",164,nuevo.anio);
+                                                printf("Nombre del due%co: %s\n\n",164,nuevo.nom);
+                                                printf("Telefono: %s\n\n",nuevo.tel);
+                                                printf("Servicio efectuado: %s\n\n",nuevo.serv);
+                                                printf("Importe: %.2f\n\n",nuevo.importe);
+                                                printf("Fecha: %s\n\n",nuevo.fecha);
                                             }else
                                                 printf("No fue posible consultar ese vehiculo.\n");
                                         }
@@ -271,7 +288,14 @@ int main()
                                             Evocar(pCE,&nuevo,&exito);
                                             if(exito){
                                                 printf("\nResultado de la consulta:\n\n");
-                                                MostrarVhlo(nuevo);
+                                                printf("Patente: %s\n\n",nuevo.patente);
+                                                printf("Marca y modelo: %s\n\n",nuevo.marcamod);
+                                                printf("A%co de fabricacion: %d\n\n",164,nuevo.anio);
+                                                printf("Nombre del due%co: %s\n\n",164,nuevo.nom);
+                                                printf("Telefono: %s\n\n",nuevo.tel);
+                                                printf("Servicio efectuado: %s\n\n",nuevo.serv);
+                                                printf("Importe: %.2f\n\n",nuevo.importe);
+                                                printf("Fecha: %s\n\n",nuevo.fecha);
                                             }else
                                                 printf("No fue posible consultar ese vehiculo.\n");
                                         }
@@ -355,7 +379,14 @@ int main()
                                             Evocar3(pCE,&nuevo,&exito);
                                             if(exito){
                                                 printf("\nResultado de la consulta:\n\n");
-                                                MostrarVhlo(nuevo);
+                                                printf("Patente: %s\n\n",nuevo.patente);
+                                                printf("Marca y modelo: %s\n\n",nuevo.marcamod);
+                                                printf("A%co de fabricacion: %d\n\n",164,nuevo.anio);
+                                                printf("Nombre del due%co: %s\n\n",164,nuevo.nom);
+                                                printf("Telefono: %s\n\n",nuevo.tel);
+                                                printf("Servicio efectuado: %s\n\n",nuevo.serv);
+                                                printf("Importe: %.2f\n\n",nuevo.importe);
+                                                printf("Fecha: %s\n\n",nuevo.fecha);
                                             }else
                                                 printf("No fue posible consultar ese vehiculo.\n");
                                         }
@@ -422,7 +453,7 @@ void MostrarLSO (){
     for(i=0;i<cantlso;i++){
         aux=l[i];
         printf("\n----------[%d]----------\n",i+1);
-         printf("Patente: %s\n\n",aux.patente);
+        printf("Patente: %s\n\n",aux.patente);
         printf("Marca y modelo: %s\n\n",aux.marcamod);
         printf("A%co de fabricacion: %d\n\n",165,aux.anio);
         printf("Nombre del due%co: %s\n\n",165,aux.nom);
@@ -483,10 +514,10 @@ void CargarVehiculo(vhlo *v){
     printf("\nMarca y modelo: ");
     fflush(stdin);
     scanf("%60[^\n]",nMM);
-    printf("\nA%co de fabricacion: ",165);
+    printf("\nA%co de fabricacion: ",164);
     fflush(stdin);
     scanf("%d",&nanio);
-    printf("\nNombre del due%co: ",165);
+    printf("\nNombre del due%co: ",164);
     fflush(stdin);
     scanf("%50[^\n]",nNombre);
     printf("\nTelefono: ");

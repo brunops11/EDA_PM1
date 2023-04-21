@@ -4,7 +4,8 @@
 #define m 250
 
 vhlo l[m];
-int cantlso = 0,cclso=0,dlsoA=0,dlsoB=0;
+int cantlso = 0,cclso=0;
+float dlsoA=0,dlsoB=0;
 
 void Localizar(char *p, int *exito, int *pos){
     int i = 0;
@@ -86,7 +87,14 @@ void Baja(char *p,vhlo v,int *exito,int cod){
     if(exitoL){
         vL=l[pos];
         if(cod==1){
-            MostrarVhlo(vL);
+            printf("Patente: %s\n\n",vL.patente);
+            printf("Marca y modelo: %s\n\n",vL.marcamod);
+            printf("A%co de fabricacion: %d\n\n",164,vL.anio);
+            printf("Nombre del due%co: %s\n\n",164,vL.nom);
+            printf("Telefono: %s\n\n",vL.tel);
+            printf("Servicio efectuado: %s\n\n",vL.serv);
+            printf("Importe: %.2f\n\n",vL.importe);
+            printf("Fecha: %s\n\n",vL.fecha);
             do{
                 printf("Esta seguro que desea eliminar el vehiculo? S/N\n");
                 fflush(stdin);

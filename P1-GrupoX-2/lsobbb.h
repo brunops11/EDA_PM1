@@ -2,32 +2,27 @@
 #define LSOBBB_H_INCLUDED
 
 vhlo lsobb[m];
-int cantlsobb = 0,cclsobb = 0,dlsobbA=0,dlsobbB=0;
+int cantlsobb = 0,cclsobb = 0;
+float dlsobbA=0,dlsobbB=0;
 
 
 void Localizar3(char p[],int *exito,int *pos){
-    int li=0,ls=cantlsobb,t,vm[m];
-    if(li==ls-1)
-        t=li;
-    else
-        t=((li+ls)/2)-1;
-    if(t==-1)
-        t=0;
-    else
-        *pos = t;
-    while(li<ls && strcmpi(lsobb[t].patente,p) != 0){
-        if(strcmpi(lsobb[t].patente,p)<0)
-            li=t+1;
-        else
-            ls=t;
-        cclsobb++;
-        vm[t]=1;
-        *pos = t;
+    int li=0,ls=cantlsobb,t=0,vm[m];
+    while(li<ls && strcmpi(lsobb[t].patente,p)!=0){
         if(li==ls-1){
             t=li;
         }else
             t=((li+ls)/2)-1;
+        if(strcmpi(lsobb[t].patente,p)!=0){
+            if(strcmpi(lsobb[t].patente,p)<0)
+                li=t+1;
+            else
+                ls=t;
+            cclsobb++;
+            vm[t]=1;
+        }
     }
+    *pos = t;
     if(vm[li]!=1)
         cclsobb++;
     *exito = li<ls;
@@ -62,7 +57,14 @@ void Baja3(char p[],vhlo v,int *exito,int cod){
     if(exitoL){
         vL=lsobb[pos];
         if(cod==1){
-            MostrarVhlo(vL);
+            printf("Patente: %s\n\n",vL.patente);
+            printf("Marca y modelo: %s\n\n",vL.marcamod);
+            printf("A%co de fabricacion: %d\n\n",164,vL.anio);
+            printf("Nombre del due%co: %s\n\n",164,vL.nom);
+            printf("Telefono: %s\n\n",vL.tel);
+            printf("Servicio efectuado: %s\n\n",vL.serv);
+            printf("Importe: %.2f\n\n",vL.importe);
+            printf("Fecha: %s\n\n",vL.fecha);
             do{
                 printf("Esta seguro que desea eliminar el vehiculo? S/N\n");
                 fflush(stdin);
