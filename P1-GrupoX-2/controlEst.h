@@ -166,6 +166,11 @@ int Lectura_operaciones(){
                         costoLSO[2].cant++;
                         if(costo > costoLSO[2].costoMax)
                             costoLSO[2].costoMax = costo;
+                    }else{
+                        costoLSO[3].costoAcumulado = costoLSO[3].costoAcumulado + costo;
+                        costoLSO[3].cant++;
+                        if(costo > costoLSO[3].costoMax)
+                            costoLSO[3].costoMax = costo;
                     }
                     costo = 0;
                     Evocar1(aux.patente,&aux1,&exitoL,&costo);
@@ -174,6 +179,11 @@ int Lectura_operaciones(){
                         costoLVO[2].cant++;
                         if(costo > costoLVO[2].costoMax)
                             costoLVO[2].costoMax = costo;
+                    }else{
+                        costoLVO[3].costoAcumulado = costoLVO[3].costoAcumulado + costo;
+                        costoLVO[3].cant++;
+                        if(costo > costoLVO[3].costoMax)
+                            costoLVO[3].costoMax = costo;
                     }
                     costo = 0;
                     Evocar2(aux.patente,&aux1,&exitoL,&costo);
@@ -182,6 +192,11 @@ int Lectura_operaciones(){
                         costoLSD[2].cant++;
                         if(costo > costoLSD[2].costoMax)
                             costoLSD[2].costoMax = costo;
+                    }else{
+                        costoLSD[3].costoAcumulado = costoLSD[3].costoAcumulado + costo;
+                    costoLSD[3].cant++;
+                    if(costo > costoLSD[3].costoMax)
+                        costoLSD[3].costoMax = costo;
                     }
                     costo = 0;
                     Evocar3(aux.patente,&aux1,&exitoL,&costo);
@@ -190,6 +205,11 @@ int Lectura_operaciones(){
                         costoLSOBB[2].cant++;
                         if(costo > costoLSOBB[2].costoMax)
                             costoLSOBB[2].costoMax = costo;
+                    }else{
+                        costoLSOBB[3].costoAcumulado = costoLSOBB[3].costoAcumulado + costo;
+                        costoLSOBB[3].cant++;
+                        if(costo > costoLSOBB[3].costoMax)
+                            costoLSOBB[3].costoMax = costo;
                     }
                 }else
                     printf("Error: Codigo de operador desconocido.\n");
