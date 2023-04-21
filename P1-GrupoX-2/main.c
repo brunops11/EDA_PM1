@@ -53,7 +53,7 @@ int main()
                                             printf("Lista llena.\n");
                                         else{
                                             CargarVehiculo(&nuevo);
-                                            Alta1(nuevo,&exito);
+                                            Alta1(nuevo,&exito,&costo);
                                             if(exito)
                                                 printf("\nVehiculo ingresado.\n");
                                             else
@@ -68,7 +68,7 @@ int main()
                                             printf("Ingrese patente del vehiculo a eliminar.\n");
                                             fflush(stdin);
                                             scanf("%7[^\n]",pCE);
-                                            Baja1(pCE,nuevo,&exito,opctipo);
+                                            Baja1(pCE,nuevo,&exito,opctipo,&costo);
                                             if(exito==1)
                                                 printf("Vehiculo eliminado.\n");
                                             else{
@@ -87,7 +87,7 @@ int main()
                                             printf("Ingrese patente del vehiculo a consultar por servicio.\n");
                                             fflush(stdin);
                                             scanf("%7[^\n]",pCE);
-                                            Evocar1(pCE,&nuevo,&exito);
+                                            Evocar1(pCE,&nuevo,&exito,&costo);
                                             if(exito){
                                                 if(strlen(nuevo.serv)==0)
                                                     printf("NO se le ha realizado servicio mecanico al vehiculo con patente %s.\n",pCE);
@@ -105,7 +105,7 @@ int main()
                                             printf("Ingrese patente del vehiculo a consultar.\n");
                                             fflush(stdin);
                                             scanf("%7[^\n]",pCE);
-                                            Evocar1(pCE,&nuevo,&exito);
+                                            Evocar1(pCE,&nuevo,&exito,&costo);
                                             if(exito){
                                                 printf("\nResultado de la consulta:\n\n");
                                                 printf("Patente: %s\n\n",nuevo.patente);
@@ -144,7 +144,7 @@ int main()
                                             printf("Lista llena.\n");
                                         else{
                                             CargarVehiculo(&nuevo);
-                                            Alta2(nuevo,&exito);
+                                            Alta2(nuevo,&exito,&costo);
                                             if(exito)
                                                 printf("\nVehiculo ingresado.\n");
                                             else
@@ -159,7 +159,7 @@ int main()
                                             printf("Ingrese patente del vehiculo a eliminar.\n");
                                             fflush(stdin);
                                             scanf("%7[^\n]",pCE);
-                                            Baja2(pCE,nuevo,&exito,opctipo);
+                                            Baja2(pCE,nuevo,&exito,opctipo,&costo);
                                             if(exito==1)
                                                 printf("Vehiculo eliminado.\n");
                                             else{
@@ -178,7 +178,7 @@ int main()
                                             printf("Ingrese patente del vehiculo a consultar por servicio.\n");
                                             fflush(stdin);
                                             scanf("%7[^\n]",pCE);
-                                            Evocar2(pCE,&nuevo,&exito);
+                                            Evocar2(pCE,&nuevo,&exito,&costo);
                                             if(exito){
                                                 if(strlen(nuevo.serv)==0)
                                                     printf("NO se le ha realizado servicio mecanico al vehiculo con patente %s.\n",pCE);
@@ -195,7 +195,7 @@ int main()
                                         else{
                                             printf("Ingrese patente del vehiculo a consultar.\n");
                                             scanf("%7[^\n]",pCE);
-                                            Evocar2(pCE,&nuevo,&exito);
+                                            Evocar2(pCE,&nuevo,&exito,&costo);
                                             if(exito){
                                                 printf("\nResultado de la consulta:\n\n");
                                                 printf("Patente: %s\n\n",nuevo.patente);
@@ -233,7 +233,7 @@ int main()
                                             printf("Lista llena.\n");
                                         else{
                                             CargarVehiculo(&nuevo);
-                                            Alta(nuevo,&exito);
+                                            Alta(nuevo,&exito,&costo);
                                             if(exito)
                                             printf("\nVehiculo ingresado.\n");
                                         else
@@ -248,7 +248,7 @@ int main()
                                             printf("Ingrese patente del vehiculo a eliminar.\n");
                                             fflush(stdin);
                                             scanf("%7[^\n]",pCE);
-                                            Baja(pCE,nuevo,&exito,opctipo);
+                                            Baja(pCE,nuevo,&exito,opctipo,&costo);
                                             if(exito==1)
                                                 printf("Vehiculo eliminado.\n");
                                             else{
@@ -267,7 +267,7 @@ int main()
                                             printf("Ingrese patente del vehiculo a consultar por servicio.\n");
                                             fflush(stdin);
                                             scanf("%7[^\n]",pCE);
-                                            Evocar(pCE,&nuevo,&exito);
+                                            Evocar(pCE,&nuevo,&exito,&costo);
                                             if(exito){
                                                 if(strlen(nuevo.serv)==0)
                                                     printf("NO se le ha realizado servicio mecanico al vehiculo con patente %s.\n",pCE);
@@ -285,7 +285,7 @@ int main()
                                             printf("Ingrese patente del vehiculo a consultar.\n");
                                             fflush(stdin);
                                             scanf("%7[^\n]",pCE);
-                                            Evocar(pCE,&nuevo,&exito);
+                                            Evocar(pCE,&nuevo,&exito,&costo);
                                             if(exito){
                                                 printf("\nResultado de la consulta:\n\n");
                                                 printf("Patente: %s\n\n",nuevo.patente);
@@ -324,7 +324,7 @@ int main()
                                             printf("Lista llena.\n");
                                         else{
                                             CargarVehiculo(&nuevo);
-                                            Alta3(nuevo,&exito);
+                                            Alta3(nuevo,&exito,&costo);
                                             if(exito)
                                             printf("\nVehiculo ingresado.\n");
                                         else
@@ -339,7 +339,7 @@ int main()
                                             printf("Ingrese patente del vehiculo a eliminar.\n");
                                             fflush(stdin);
                                             scanf("%7[^\n]",pCE);
-                                            Baja3(pCE,nuevo,&exito,opctipo);
+                                            Baja3(pCE,nuevo,&exito,opctipo,&costo);
                                             if(exito==1)
                                                 printf("Vehiculo eliminado.\n");
                                             else{
@@ -358,7 +358,7 @@ int main()
                                             printf("Ingrese patente del vehiculo a consultar por servicio.\n");
                                             fflush(stdin);
                                             scanf("%7[^\n]",pCE);
-                                            Evocar3(pCE,&nuevo,&exito);
+                                            Evocar3(pCE,&nuevo,&exito,&costo);
                                             if(exito){
                                                 if(strlen(nuevo.serv)==0)
                                                     printf("NO se le ha realizado servicio mecanico al vehiculo con patente %s.\n",pCE);
@@ -376,7 +376,7 @@ int main()
                                             printf("Ingrese patente del vehiculo a consultar.\n");
                                             fflush(stdin);
                                             scanf("%7[^\n]",pCE);
-                                            Evocar3(pCE,&nuevo,&exito);
+                                            Evocar3(pCE,&nuevo,&exito,&costo);
                                             if(exito){
                                                 printf("\nResultado de la consulta:\n\n");
                                                 printf("Patente: %s\n\n",nuevo.patente);

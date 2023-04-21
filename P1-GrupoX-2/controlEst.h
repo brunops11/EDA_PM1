@@ -25,7 +25,7 @@ vhlo exitoE;
 vhlo exitoEv;
 int exito = 0,opc = 0;
 char patAux[8];
-float mLVO[4],mLSD[4],mLSO[4],mLSOBB[4];
+float mLVO[4],mLSD[4],mLSO[4],mLSOBB[4],costo;
 
 int Lectura_operaciones(){
     FILE *fp;
@@ -42,7 +42,7 @@ int Lectura_operaciones(){
         cantlso = 0;
         cantlsd = 0;
         cantlsobb = 0;
-        cclvo = 0;
+        /*cclvo = 0;
         cclso = 0;
         cclsd = 0;
         cclsobb = 0;
@@ -53,7 +53,7 @@ int Lectura_operaciones(){
         dlsobbA = 0;
         dlsobbB = 0;
         mplvoA = 0;
-        mplvoB = 0;
+        mplvoB = 0;*/
         while(!(feof(fp))){
             vhlo aux;
             fscanf(fp,"%d",&codOp);
@@ -72,96 +72,124 @@ int Lectura_operaciones(){
                 fgets(aux.fecha,11,fp);
                 fgetc(fp);
                 if(codOp==1){
-                    Alta(aux,&exitoL);
-                    if(exitoL){
-                        costoLSO[0].costoAcumulado = costoLSO[0].costoAcumulado + dlsoA;
-                        costoLSO[0].cant++;
-                        if(dlsoA>costoLSO[0].costoMax)
-                            costoLSO[0].costoMax = dlsoA;
+                    if(cantlso<250){
+                        costo = 0;
+                        Alta(aux,&exitoL,&costo);
+                        if(exitoL){
+                            costoLSO[0].costoAcumulado = costoLSO[0].costoAcumulado + costo;
+                            costoLSO[0].cant++;
+                            if(costo>costoLSO[0].costoMax)
+                                costoLSO[0].costoMax = costo;
+                        }
                     }
-                    Alta1(aux,&exitoL);
-                    if(exitoL){
-                        costoLVO[0].costoAcumulado = costoLVO[0].costoAcumulado + mplvoA;
-                        costoLVO[0].cant++;
-                        if(mplvoA>costoLVO[0].costoMax)
-                            costoLVO[0].costoMax = mplvoA;
+                    if(cantlvo<250){
+                    costo = 0;
+                    Alta1(aux,&exitoL,&costo);
+                        if(exitoL){
+                            costoLVO[0].costoAcumulado = costoLVO[0].costoAcumulado + costo;
+                            costoLVO[0].cant++;
+                            if(costo>costoLVO[0].costoMax)
+                                costoLVO[0].costoMax = costo;
+                        }
                     }
-                    Alta2(aux,&exitoL);
-                    if(exitoL){
-                        costoLSD[0].costoAcumulado = costoLSD[0].costoAcumulado + dlsdA;
-                        costoLSD[0].cant++;
-                        if(dlsdA>costoLSD[0].costoMax)
-                            costoLSD[0].costoMax = dlsdA;
+                    if(cantlsd<250){
+                        costo = 0;
+                        Alta2(aux,&exitoL,&costo);
+                        if(exitoL){
+                            costoLSD[0].costoAcumulado = costoLSD[0].costoAcumulado + costo;
+                            costoLSD[0].cant++;
+                            if(costo>costoLSD[0].costoMax)
+                                costoLSD[0].costoMax = costo;
+                        }
                     }
-                    Alta3(aux,&exitoL);
-                    if(exitoL){
-                        costoLSOBB[0].costoAcumulado = costoLSOBB[0].costoAcumulado + dlsobbA;
-                        costoLSOBB[0].cant++;
-                        if(dlsobbA>costoLSOBB[0].costoMax)
-                            costoLSOBB[0].costoMax = dlsobbA;
+                    if(cantlsobb<250){
+                        costo = 0;
+                        Alta3(aux,&exitoL,&costo);
+                        if(exitoL){
+                            costoLSOBB[0].costoAcumulado = costoLSOBB[0].costoAcumulado + costo;
+                            costoLSOBB[0].cant++;
+                            if(costo>costoLSOBB[0].costoMax)
+                                costoLSOBB[0].costoMax = costo;
+                        }
                     }
                 }else{
-                    Baja(aux.patente,aux,&exitoL,2);
-                    if(exitoL){
-                    costoLSO[1].costoAcumulado = costoLSO[1].costoAcumulado + dlsoB;
-                    costoLSO[1].cant++;
-                    if(dlsoB > costoLSO[1].costoMax)
-                        costoLSO[1].costoMax = dlsoB;
-                }
-                    Baja1(aux.patente,aux,&exitoL,2);
-                    if(exitoL){
-                    costoLVO[1].costoAcumulado = costoLVO[1].costoAcumulado + mplvoB;
-                    costoLVO[1].cant++;
-                    if(mplvoB > costoLVO[1].costoMax)
-                        costoLVO[1].costoMax = mplvoB;
-                }
-                    Baja2(aux.patente,aux,&exitoL,2);
-                    if(exitoL){
-                    costoLSD[1].costoAcumulado = costoLSD[1].costoAcumulado + dlsdB;
-                    costoLSD[1].cant++;
-                    if(dlsdB > costoLSD[1].costoMax)
-                        costoLSD[1].costoMax = dlsdB;
-                }
-                    Baja3(aux.patente,aux,&exitoL,2);
-                    if(exitoL){
-                    costoLSOBB[1].costoAcumulado = costoLSOBB[1].costoAcumulado + dlsobbB;
-                    costoLSOBB[1].cant++;
-                    if(dlsobbB > costoLSOBB[1].costoMax)
-                        costoLSOBB[1].costoMax = dlsobbB;
-                }
+                    if(cantlso>0){
+                        costo = 0;
+                        Baja(aux.patente,aux,&exitoL,2,&costo);
+                        if(exitoL){
+                        costoLSO[1].costoAcumulado = costoLSO[1].costoAcumulado + costo;
+                        costoLSO[1].cant++;
+                        if(costo > costoLSO[1].costoMax)
+                            costoLSO[1].costoMax = costo;
+                        }
+                    }
+                    if(cantlvo>0){
+                        costo = 0;
+                        Baja1(aux.patente,aux,&exitoL,2,&costo);
+                        if(exitoL){
+                        costoLVO[1].costoAcumulado = costoLVO[1].costoAcumulado + costo;
+                        costoLVO[1].cant++;
+                        if(costo > costoLVO[1].costoMax)
+                            costoLVO[1].costoMax = costo;
+                        }
+                    }
+                    if(cantlsd>0){
+                        costo = 0;
+                        Baja2(aux.patente,aux,&exitoL,2,&costo);
+                        if(exitoL){
+                        costoLSD[1].costoAcumulado = costoLSD[1].costoAcumulado + costo;
+                        costoLSD[1].cant++;
+                        if(costo > costoLSD[1].costoMax)
+                            costoLSD[1].costoMax = costo;
+                        }
+                    }
+                    if(cantlsobb>0){
+                        costo = 0;
+                        Baja3(aux.patente,aux,&exitoL,2,&costo);
+                        if(exitoL){
+                        costoLSOBB[1].costoAcumulado = costoLSOBB[1].costoAcumulado + costo;
+                        costoLSOBB[1].cant++;
+                        if(costo > costoLSOBB[1].costoMax)
+                            costoLSOBB[1].costoMax = costo;
+                        }
+                    }
                 }
             }else{
                 if(codOp==3){
                     fgets(aux.patente,8,fp);
                     fgetc(fp);
                     vhlo aux1;
-                    Evocar(aux.patente,&aux1,&exitoL);
+                    costo = 0;
+                    Evocar(aux.patente,&aux1,&exitoL,&costo);
                     if(exitoL){
-                        costoLSO[2].costoAcumulado = costoLSO[2].costoAcumulado + cclso;
+                        costoLSO[2].costoAcumulado = costoLSO[2].costoAcumulado + costo;
                         costoLSO[2].cant++;
-                        if(cclso > costoLSO[2].costoMax)
-                            costoLSO[2].costoMax = cclso;
+                        if(costo > costoLSO[2].costoMax)
+                            costoLSO[2].costoMax = costo;
                     }
-                    Evocar1(aux.patente,&aux1,&exitoL);
+                    costo = 0;
+                    Evocar1(aux.patente,&aux1,&exitoL,&costo);
                     if(exitoL){
-                        costoLVO[2].costoAcumulado = costoLVO[2].costoAcumulado + cclvo;
+                        costoLVO[2].costoAcumulado = costoLVO[2].costoAcumulado + costo;
                         costoLVO[2].cant++;
-                        if(cclvo > costoLVO[2].costoMax)
-                            costoLVO[2].costoMax = cclvo;
+                        if(costo > costoLVO[2].costoMax)
+                            costoLVO[2].costoMax = costo;
                     }
-                    Evocar2(aux.patente,&aux1,&exitoL);
+                    costo = 0;
+                    Evocar2(aux.patente,&aux1,&exitoL,&costo);
                     if(exitoL){
-                        costoLSD[2].costoAcumulado = costoLSD[2].costoAcumulado + cclsd;
+                        costoLSD[2].costoAcumulado = costoLSD[2].costoAcumulado + costo;
                         costoLSD[2].cant++;
-                        if(cclsd > costoLSD[2].costoMax)
-                            costoLSD[2].costoMax = cclsd;
+                        if(costo > costoLSD[2].costoMax)
+                            costoLSD[2].costoMax = costo;
                     }
-                    Evocar3(aux.patente,&aux1,&exitoL);
+                    costo = 0;
+                    Evocar3(aux.patente,&aux1,&exitoL,&costo);
                     if(exitoL){
-                        costoLSOBB[2].costoAcumulado = costoLSOBB[2].costoAcumulado + cclsobb;
+                        costoLSOBB[2].costoAcumulado = costoLSOBB[2].costoAcumulado + costo;
                         costoLSOBB[2].cant++;
-                        if(cclsobb > costoLSOBB[2].costoMax)
-                            costoLSOBB[2].costoMax = cclsobb;
+                        if(costo > costoLSOBB[2].costoMax)
+                            costoLSOBB[2].costoMax = costo;
                     }
                 }else
                     printf("Error: Codigo de operador desconocido.\n");
@@ -211,19 +239,21 @@ int Lectura_operaciones(){
 
 void Comparacion(){
     printf("\t COMPARACION DE ESTRUCTURAS\n\n");
-    printf("COSTOS\t\tLVO\tLSD\tLSO\tLSOBB\n");
-    printf("_____________________________________________________\n");
-    printf("MAX.ALTA\t%.2f\t%.2f\t%.2f\t%.2f\t\n", costoLVO[0].costoMax, costoLSD[0].costoMax, costoLSO[0].costoMax, costoLSOBB[0].costoMax);
-    printf("MED.ALTA\t%.2f\t%.2f\t%.2f\t%.2f\t\n", mLVO[0], mLSD[0], mLSO[0], mLSOBB[0]);
-    printf("_____________________________________________________\n");
-    printf("MAX.BAJA\t%.2f\t%.2f\t%.2f\t%.2f\t\n", costoLVO[1].costoMax, costoLSD[1].costoMax, costoLSO[1].costoMax, costoLSOBB[1].costoMax);
-    printf("MED.BAJA\t%.2f\t%.2f\t%.2f\t%.2f\t\n", mLVO[1], mLSD[1], mLSO[1], mLSOBB[1]);
-    printf("_____________________________________________________\n");
-    printf("MAX.EVOEX\t%.2f\t%.2f\t%.2f\t%.2f\t\n", costoLVO[2].costoMax, costoLSD[2].costoMax, costoLSO[2].costoMax, costoLSOBB[2].costoMax);
-    printf("MED.EVOEX\t%.2f\t%.2f\t%.2f\t%.2f\t\n", mLVO[2], mLSD[2], mLSO[2], mLSOBB[2]);
-    printf("_____________________________________________________\n");
-    printf("MAX.EVONOEX\t%.2f\t%.2f\t%.2f\t%.2f\t\n", costoLVO[3].costoMax, costoLSD[3].costoMax, costoLSO[3].costoMax, costoLSOBB[3].costoMax);
-    printf("MED.EVONOEX\t%.2f\t%.2f\t%.2f\t%.2f\t\n\n", mLVO[3], mLSD[3], mLSO[3], mLSOBB[3]);
+    printf("CANTIDAD\tLVO\tLSD\tLSO\tLSOBB\n");
+    printf("\t\t%d\t%d\t%d\t%d\t\n\n",cantlvo,cantlsd,cantlso,cantlsobb);
+    printf("COSTOS\t\tLVO\t\tLSD\t\tLSO\t\tLSOBB\n");
+    printf("____________________________________________________________________\n");
+    printf("MAX.ALTA\t%.2f\t\t%.2f\t\t%.2f\t\t%.2f\t\t\n", costoLVO[0].costoMax, costoLSD[0].costoMax, costoLSO[0].costoMax, costoLSOBB[0].costoMax);
+    printf("MED.ALTA\t%.2f\t\t%.2f\t\t%.2f\t\t%.2f\t\t\n", mLVO[0], mLSD[0], mLSO[0], mLSOBB[0]);
+    printf("____________________________________________________________________\n");
+    printf("MAX.BAJA\t%.2f\t\t%.2f\t\t%.2f\t\t%.2f\t\t\n", costoLVO[1].costoMax, costoLSD[1].costoMax, costoLSO[1].costoMax, costoLSOBB[1].costoMax);
+    printf("MED.BAJA\t%.2f\t\t%.2f\t\t%.2f\t\t%.2f\t\t\n", mLVO[1], mLSD[1], mLSO[1], mLSOBB[1]);
+    printf("____________________________________________________________________\n");
+    printf("MAX.EVOEX\t%.2f\t\t%.2f\t\t%.2f\t\t%.2f\t\t\n", costoLVO[2].costoMax, costoLSD[2].costoMax, costoLSO[2].costoMax, costoLSOBB[2].costoMax);
+    printf("MED.EVOEX\t%.2f\t\t%.2f\t\t%.2f\t\t%.2f\t\t\n", mLVO[2], mLSD[2], mLSO[2], mLSOBB[2]);
+    printf("____________________________________________________________________\n");
+    printf("MAX.EVONOEX\t%.2f\t\t%.2f\t\t%.2f\t\t%.2f\t\t\n", costoLVO[3].costoMax, costoLSD[3].costoMax, costoLSO[3].costoMax, costoLSOBB[3].costoMax);
+    printf("MED.EVONOEX\t%.2f\t\t%.2f\t\t%.2f\t\t%.2f\t\t\n\n", mLVO[3], mLSD[3], mLSO[3], mLSOBB[3]);
     system("PAUSE");
     system("cls");
 }

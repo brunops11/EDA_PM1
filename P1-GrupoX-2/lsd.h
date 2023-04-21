@@ -3,14 +3,14 @@
 #include <string.h>
 
 vhlo lsd[m];
-int cantlsd = 0,cclsd=0;
-float dlsdA = 0,dlsdB=0;
+int cantlsd = 0;
 
-void Localizar2(char *p,int *exito,int *pos){
+
+void Localizar2(char *p,int *exito,int *pos,float *cclsd){
     int i=0;
     while(strcmpi(lsd[i].patente,p)!=0 && i<cantlsd){
             i++;
-            cclsd++;
+            *cclsd = *cclsd + 1;
     }
     *pos = i;
     *exito = i<cantlsd;
@@ -18,28 +18,32 @@ void Localizar2(char *p,int *exito,int *pos){
 
 int Pertenece2(char *p){
     int exitoL,pos;
-    Localizar2(p,&exitoL,&pos);
+    float c=0;
+    Localizar2(p,&exitoL,&pos,&c);
     return exitoL;
 }
 
-void Alta2(vhlo v,int *exito){
+void Alta2(vhlo v,int *exito,float *dlsdA){
     int exitoL,pos;
-    Localizar2(v.patente,&exitoL,&pos);
+    float c;
+    Localizar2(v.patente,&exitoL,&pos,&c);
     if(!exitoL){
         lsd[pos] = v;
         cantlsd++;
+        *dlsdA = 0;
         *exito = 1;
     }else
         *exito = 0;
 }
 
-void Baja2(char *p,vhlo v,int *exito,int cod){
+void Baja2(char *p,vhlo v,int *exito,int cod,float *dlsdB){
     int exitoL = 0,pos = 0,i;
     char vrf;
+    float c;
     vhlo vL;
-    Localizar2(p,&exitoL,&pos);
+    Localizar2(p,&exitoL,&pos,&c);
     if(exitoL){
-        vL=lsd[pos];
+        vL = lsd[pos];
         if(cod==1){
             printf("Patente: %s\n\n",vL.patente);
             printf("Marca y modelo: %s\n\n",vL.marcamod);
@@ -63,8 +67,8 @@ void Baja2(char *p,vhlo v,int *exito,int cod){
         if(vrf=='S'||vrf=='s'){
             if(cantlsd-1!=pos){
                 for(i=pos;i<cantlsd-1;i++){
-                    lsd[i]=lsd[i+1];
-                    dlsdB=dlsdB+1.5;
+                    lsd[i] = lsd[i+1];
+                    *dlsdB = *dlsdB+1.5;
                 }
             }
                 cantlsd--;
@@ -75,12 +79,12 @@ void Baja2(char *p,vhlo v,int *exito,int cod){
         *exito = 0;
 }
 
-void Evocar2(char *p,vhlo *aux,int *exito){
+void Evocar2(char *p,vhlo *aux,int *exito,float *cclsd){
     int exitoL,pos;
-    Localizar2(p,&exitoL,&pos);
+    Localizar2(p,&exitoL,&pos,cclsd);
     if(exitoL){
         *aux = lsd[pos];
-        *exito =1;
+        *exito = 1;
     }else
         *exito = 0;
 }

@@ -13,12 +13,12 @@ typedef struct{
 
 listaVO lvo;
 nodoV *antLVO;
-int cantlvo = 0,cclvo=0,mplvoA=0,mplvoB=0;
+int cantlvo = 0;
 
-void Localizar1(char p[],int *exito,nodoV **pos){
+void Localizar1(char p[],int *exito,nodoV **pos,float *cclvo){
     *pos = lvo.ac;
     if(lvo.ac==NULL){
-        cclvo++;
+        *cclvo = *cclvo + 1;
         *exito = 0;
     }
     lvo.ap = lvo.ac;
@@ -27,14 +27,14 @@ void Localizar1(char p[],int *exito,nodoV **pos){
         antLVO = lvo.ap;
         lvo.ap = (*lvo.ap).sig;
         *pos = lvo.ap;
-        cclvo++;
+        *cclvo = *cclvo + 1;
     }
     if(lvo.ap==NULL && lvo.ac!=NULL){
-        cclvo++;
+        *cclvo = *cclvo + 1;
         *exito = 0;
     }
     if(strcmpi((*lvo.ap).dato.patente,p)==0){
-        cclvo++;
+        *cclvo = *cclvo + 1;
         *pos = lvo.ap;
         *exito = 1;
     }
@@ -42,15 +42,17 @@ void Localizar1(char p[],int *exito,nodoV **pos){
 
 int Pertenece1(char p[]){
     int exitoL;
+    float c=0;
     nodoV *pos=NULL;
-    Localizar1(p,&exitoL,&pos);
+    Localizar1(p,&exitoL,&pos,&c);
     return exitoL;
 }
 
-void Alta1(vhlo v,int *exito){
+void Alta1(vhlo v,int *exito,float *mplvoA){
     int exitoL;
+    float c;
     nodoV *pos = NULL;
-    Localizar1(v.patente,&exitoL,&pos);
+    Localizar1(v.patente,&exitoL,&pos,&c);
     if(!exitoL){
         nodoV *n = (nodoV*)malloc(sizeof(nodoV));
         if(n==NULL)
@@ -60,19 +62,19 @@ void Alta1(vhlo v,int *exito){
         if(lvo.ac==NULL){
             lvo.ac = n;
             lvo.ap = n;
-            mplvoA = mplvoA + 2;
+            *mplvoA = *mplvoA + 2;
         }else if(pos==lvo.ac){
             (*n).sig = lvo.ac;
             lvo.ac = n;
             lvo.ap = n;
-            mplvoA = mplvoA + 3;
+            *mplvoA = *mplvoA + 3;
         }else if(antLVO!=NULL && pos!=NULL){
             (*n).sig = lvo.ap;
             (*antLVO).sig = n;
-            mplvoA = mplvoA + 2;
+            *mplvoA = *mplvoA + 2;
         }else{
             (*antLVO).sig = n;
-            mplvoA = mplvoA + 1;
+            *mplvoA = *mplvoA + 1;
         }
         *exito = 1;
         cantlvo++;
@@ -80,12 +82,13 @@ void Alta1(vhlo v,int *exito){
         *exito = 0;
 }
 
-void Baja1(char *p,vhlo v,int *exito,int cod){
+void Baja1(char *p,vhlo v,int *exito,int cod,float *mplvoB){
     int exitoL;
     nodoV *pos=NULL;
     char vrf;
+    float c;
     vhlo vL;
-    Localizar1(p,&exitoL,&pos);
+    Localizar1(p,&exitoL,&pos,&c);
     if(exitoL){
         lvo.ap = pos;
         vL=(*lvo.ap).dato;
@@ -112,10 +115,10 @@ void Baja1(char *p,vhlo v,int *exito,int cod){
         if(vrf=='S'||vrf=='s'){
                 if(lvo.ap == lvo.ac){
                     lvo.ac = (*lvo.ap).sig;
-                    mplvoB = mplvoB + 2;
+                    *mplvoB = *mplvoB + 2;
                 }else{
                       (*antLVO).sig = lvo.ap;
-                      mplvoB = mplvoB + 2;
+                      *mplvoB = *mplvoB + 2;
                 }
                 cantlvo--;
                 *exito = 1;
@@ -125,10 +128,10 @@ void Baja1(char *p,vhlo v,int *exito,int cod){
         *exito = 0;
 }
 
-void Evocar1(char p[],vhlo *aux,int *exito){
+void Evocar1(char p[],vhlo *aux,int *exito,float *cclvo){
     int exitoL;
     nodoV *pos=NULL;
-    Localizar1(p,&exitoL,&pos);
+    Localizar1(p,&exitoL,&pos,cclvo);
     if(exitoL){
         *aux= (*lvo.ap).dato;
         *exito = 1;

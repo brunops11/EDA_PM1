@@ -4,14 +4,13 @@
 #define m 250
 
 vhlo l[m];
-int cantlso = 0,cclso=0;
-float dlsoA=0,dlsoB=0;
+int cantlso = 0;
 
-void Localizar(char *p, int *exito, int *pos){
+void Localizar(char *p, int *exito, int *pos,float *cclso){
     int i = 0;
     while(i<cantlso && strcmpi(l[i].patente,p) < 0){
         i++;
-        cclso++;
+        *cclso = *cclso + 1;
     }
         *pos = i;
         *exito = strcmpi(l[i].patente,p)==0;
@@ -19,13 +18,14 @@ void Localizar(char *p, int *exito, int *pos){
 
 int Pertenece(char *p){
     int exito=0,pos=-1;
-    Localizar(p,&exito,&pos);
+    float c=0;
+    Localizar(p,&exito,&pos,&c);
     return exito;
 }
 
-void Evocar(char *p,vhlo *aux,int *exito){
+void Evocar(char *p,vhlo *aux,int *exito,float *cclso){
     int exitoL=0, pos=0;
-    Localizar(p,&exitoL,&pos);
+    Localizar(p,&exitoL,&pos,cclso);
     if (exitoL){
         *aux = l[pos];
         *exito = 1;
@@ -33,15 +33,16 @@ void Evocar(char *p,vhlo *aux,int *exito){
         *exito = 0;
 }
 
-void Alta(vhlo v,int *exito){
+void Alta(vhlo v,int *exito,float *dlsoA){
     int exitoL,pos,i;
-    Localizar((v).patente,&exitoL,&pos);
+    float c;
+    Localizar((v).patente,&exitoL,&pos,&c);
     if(exitoL){
         *exito = 0;
     }else{
         for(i=cantlso-1;i>=pos;i--){
             l[i+1]=l[i];
-            dlsoA=dlsoA+1.5;
+            *dlsoA = *dlsoA+1.5;
         }
         l[pos]=v;
         *exito=1;
@@ -79,11 +80,12 @@ void Alta(vhlo v,int *exito){
         *exito = 0;
 }*/
 
-void Baja(char *p,vhlo v,int *exito,int cod){
+void Baja(char *p,vhlo v,int *exito,int cod, float *dlsoB){
     int exitoL = 0,pos = 0,i;
     char vrf;
+    float c;
     vhlo vL;
-    Localizar(p,&exitoL,&pos);
+    Localizar(p,&exitoL,&pos,&c);
     if(exitoL){
         vL=l[pos];
         if(cod==1){
@@ -109,7 +111,7 @@ void Baja(char *p,vhlo v,int *exito,int cod){
         if(vrf=='S'||vrf=='s'){
                 for(i=pos;i<cantlso-1;i++){
                     l[i]=l[i+1];
-                    dlsoB=dlsoB+1.5;
+                    *dlsoB = *dlsoB+1.5;
                 }
                 cantlso--;
                 *exito = 1; //eliminado

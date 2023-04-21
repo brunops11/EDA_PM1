@@ -2,11 +2,9 @@
 #define LSOBBB_H_INCLUDED
 
 vhlo lsobb[m];
-int cantlsobb = 0,cclsobb = 0;
-float dlsobbA=0,dlsobbB=0;
+int cantlsobb = 0;
 
-
-void Localizar3(char p[],int *exito,int *pos){
+void Localizar3(char p[],int *exito,int *pos,float *cclsobb){
     int li=0,ls=cantlsobb,t=0,vm[m];
     while(li<ls && strcmpi(lsobb[t].patente,p)!=0){
         if(li==ls-1){
@@ -18,42 +16,45 @@ void Localizar3(char p[],int *exito,int *pos){
                 li=t+1;
             else
                 ls=t;
-            cclsobb++;
+            *cclsobb = *cclsobb + 1;
             vm[t]=1;
         }
     }
     *pos = t;
     if(vm[li]!=1)
-        cclsobb++;
+        *cclsobb = *cclsobb + 1;
     *exito = li<ls;
 }
 
 int Pertenece3(char p[]){
     int exitoL,pos;
-    Localizar3(p,&exitoL,&pos);
+    float c=0;
+    Localizar3(p,&exitoL,&pos,&c);
     return exitoL;
 }
 
-void Alta3(vhlo v,int *exito){
+void Alta3(vhlo v,int *exito,float *dlsobbA){
     int exitoL,pos,i;
-    Localizar3(v.patente,&exitoL,&pos);
+    float c;
+    Localizar3(v.patente,&exitoL,&pos,&c);
     if(!exitoL){
         for(i=cantlsobb-1;i>=pos;i--){
-            lsobb[i+1]=lsobb[i];
-            dlsobbA=dlsobbA+1.5;
+            lsobb[i+1] = lsobb[i];
+            *dlsobbA = *dlsobbA + 1.5;
         }
-        lsobb[pos]=v;
+        lsobb[pos] = v;
         cantlsobb++;
         *exito=1;
     }else
         *exito = 0;
 }
 
-void Baja3(char p[],vhlo v,int *exito,int cod){
+void Baja3(char p[],vhlo v,int *exito,int cod,float *dlsobbB){
     int exitoL,pos,i;
     char vrf;
+    float c;
     vhlo vL;
-    Localizar3(p,&exitoL,&pos);
+    Localizar3(p,&exitoL,&pos,&c);
     if(exitoL){
         vL=lsobb[pos];
         if(cod==1){
@@ -79,8 +80,8 @@ void Baja3(char p[],vhlo v,int *exito,int cod){
 
         if(vrf=='S'||vrf=='s'){
                 for(i=pos;i<cantlsobb-1;i++){
-                    lsobb[i]=lsobb[i+1];
-                    dlsobbB=dlsobbB+1.5;
+                    lsobb[i] = lsobb[i+1];
+                    *dlsobbB = *dlsobbB+1.5;
                 }
                 cantlsobb--;
                 *exito = 1;
@@ -90,11 +91,11 @@ void Baja3(char p[],vhlo v,int *exito,int cod){
         *exito = 0;
     }
 
-void Evocar3(char p[],vhlo *aux,int *exito){
+void Evocar3(char p[],vhlo *aux,int *exito,float *cclsobb){
     int exitoL,pos;
-    Localizar3(p,&exitoL,&pos);
+    Localizar3(p,&exitoL,&pos,cclsobb);
     if(exitoL){
-        *aux= lsobb[pos];
+        *aux = lsobb[pos];
         *exito = 1;
     }else
         *exito=0;
