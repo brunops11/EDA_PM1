@@ -1,6 +1,72 @@
-//
+/*Grupo
+  Bruno P. Scardapane
+                    */
+/* Analisis Comparacion de estructuras
+        LVO:
+ALTA:
+    - MAXIMO: 3
+    - MEDIO: 1.89
+BAJA:
+    - MAXIMO: 2
+    - MEDIO: 2
+EVOCACION:
+    - MAXIMO: 60
+    - MEDIO: 29.67
+EVOCACION NO EXITOSA:
+    - MAXIMO:
+    - MEDIO:
 
+        LSO:
+ALTA:
+    - MAXIMO: 63
+    - MEDIO: 7.49
+BAJA:
+    - MAXIMO: 60
+    - MEDIO: 26.43
+EVOCACION:
+    - MAXIMO: 59
+    - MEDIO: 25.21
+EVOCACION NO EXITOSA:
+    - MAXIMO: 58
+    - MEDIO: 22.07
 
+        LSD:
+ALTA:
+    - MAXIMO: 0
+    - MEDIO: 0
+BAJA:
+    - MAXIMO: 52.50
+    - MEDIO: 30.02
+EVOCACION:
+    - MAXIMO: 59
+    - MEDIO: 25.65
+EVOCACION NO EXITOSA:
+    - MAXIMO: 43
+    - MEDIO: 40.69
+
+        LSOBB(Biseccion):
+ALTA:
+    - MAXIMO: 90
+    - MEDIO: 12.81
+BAJA:
+    - MAXIMO: 87
+    - MEDIO: 30.65
+EVOCACION:
+    - MAXIMO: 7
+    - MEDIO: 4.03
+EVOCACION NO EXITOSA:
+    - MAXIMO: 8
+    - MEDIO: 5.85
+
+Conclusion: Utilizando como funcion de costo cantidad de modificaciones de
+            punteros y evaluando por maximo, la estructuras mas favorable
+            para inserciones y eliminaciones es la Lista vinculada ordenada.
+
+            Utilizando como funcion de costo cantidad de celdas consultadas
+            y evaluando por maximo, la estructuras mas favorable para
+            evocaciones, ya sean exitosas o no, es la Lista secuencial con
+            busqueda binaria por biseccion.
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
