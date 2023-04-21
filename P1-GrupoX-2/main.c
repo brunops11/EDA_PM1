@@ -1,5 +1,5 @@
-/*Grupo
-  Bruno P. Scardapane
+/*Grupo:
+  Nombre:
                     */
 /* Analisis Comparacion de estructuras
         LVO:
